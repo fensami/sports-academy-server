@@ -141,7 +141,19 @@ async function run() {
 
 
     //add classes api
-    app.get('/classes', async (req, res) => {
+    app.get('/classes',verifyJWT, async (req, res) => {
+
+      // const email = req.query.email;
+      // if (!email) {
+      //   res.send([]);
+      // }
+      // const decodedEmail = req.decoded.email;
+      // if (email !== decodedEmail) {
+      //   return res.status(403).send({ error: true, message: 'forbidden access' })
+      // }
+      // const query = { email: email }; 
+
+
       const result = await classesCollection.find().toArray();
       res.send(result)
 

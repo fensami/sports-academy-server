@@ -41,7 +41,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const usersCollection = client.db("sportsAcademy").collection("users");
     const classesCollection = client.db('sportsAcademy').collection('classes')
@@ -187,13 +187,9 @@ app.get('/myaddedclasses',verifyJWT, async (req, res) => {
 
 app.post('/myaddedclasses', async(req, res)=> {
   const myclassAdded = req.body;
-
-  // console.log(addClass);
   const result = await myAddClassCollection.insertOne(myclassAdded);
   res.send(result);
-  // if(req.status == 200){
-  //   console.log('added');
-  // }
+  
 })
 
 app.patch('/myaddedclasses/:id', async (req, res) => {
@@ -235,7 +231,7 @@ app.patch('/myaddedclasses/:id', async (req, res) => {
 
 
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error

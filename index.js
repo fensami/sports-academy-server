@@ -86,6 +86,8 @@ async function run() {
       res.send(result);
     });
 
+    
+
     // security layer: verifyJWT
     // email same
     // check admin
@@ -125,6 +127,20 @@ async function run() {
       const result = await usersCollection.updateOne(filter, updateDoc);
       res.send(result);
     })
+
+
+    // app.delete('/users/:id',verifyJWT, async (req, res) => {
+    //   const id = req.params.id;
+    //   console.log(id);
+    //   const query = {_id: new ObjectId(id)};
+    //   const result = await usersCollection.deleteOne(query);
+    //   res.send(result);
+    // })
+
+
+
+
+
     //set instructor
     app.patch('/users/instructor/:id', async (req, res) => {
       const id = req.params.id;
@@ -141,9 +157,9 @@ async function run() {
 
 
     //add classes api
-    app.get('/classes',verifyJWT, async (req, res) => {
+    app.get('/classes', async (req, res) => {
 
-      // const email = req.query.email;
+      const email = req.query.email;
       // if (!email) {
       //   res.send([]);
       // }
@@ -151,10 +167,10 @@ async function run() {
       // if (email !== decodedEmail) {
       //   return res.status(403).send({ error: true, message: 'forbidden access' })
       // }
-      // const query = { email: email }; 
+      const query = { email: email }; 
 
 
-      const result = await classesCollection.find().toArray();
+      const result = await classesCollection.find(query).toArray();
       res.send(result)
 
     })

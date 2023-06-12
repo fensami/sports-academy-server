@@ -129,11 +129,11 @@ async function run() {
     })
 
 
-    // app.delete('/users/:id',verifyJWT, async (req, res) => {
+    //TODO:
+    // app.delete('/myaddedclasses/:id', verifyJWT, async(req,res) => {
     //   const id = req.params.id;
-    //   console.log(id);
     //   const query = {_id: new ObjectId(id)};
-    //   const result = await usersCollection.deleteOne(query);
+    //   const result = await addClassesCart.deleteOne(query);
     //   res.send(result);
     // })
 

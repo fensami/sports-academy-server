@@ -157,7 +157,7 @@ async function run() {
 
 
     //add classes api
-    app.get('/classes',verifyJWT, async (req, res) => {
+    app.get('/classes', async (req, res) => {
 
       const email = req.query.email;
       // if (!email) {

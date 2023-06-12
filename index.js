@@ -181,7 +181,7 @@ app.get('/myaddedclasses',verifyJWT, async (req, res) => {
       }
       const query = { email: email }; 
 
-      const result = await myAddClassCollection.find(query,filter).toArray();
+      const result = await myAddClassCollection.find(query).toArray();
       res.send(result);
     });
 
@@ -191,9 +191,9 @@ app.post('/myaddedclasses', async(req, res)=> {
   // console.log(addClass);
   const result = await myAddClassCollection.insertOne(myclassAdded);
   res.send(result);
-  if(req.status == 200){
-    console.log('added');
-  }
+  // if(req.status == 200){
+  //   console.log('added');
+  // }
 })
 
 app.patch('/myaddedclasses/:id', async (req, res) => {

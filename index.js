@@ -141,7 +141,7 @@ async function run() {
 
 
     //add classes api
-    app.get('/classes', verifyJWT, async (req, res) => {
+    app.get('/classes', async (req, res) => {
       const result = await classesCollection.find().toArray();
       res.send(result)
 
@@ -170,23 +170,21 @@ async function run() {
 
 //add my classes collection apis
 
-// app.get('/myaddedclasses',verifyJWT, async (req, res) => {
-//       const email = req.query.email;
-//       if (!email) {
-//         res.send([]);
-//       }
-//       const decodedEmail = req.decoded.email;
-//       if (email !== decodedEmail) {
-//         return res.status(403).send({ error: true, message: 'forbidden access' })
-//       }
-      
-//       // const id = req.params.id;
-//       // const classId = req.params.id;
-//       const query = { email: email }; 
+app.get('/myaddedclasses',verifyJWT, async (req, res) => {
+      const email = req.query.email;
+      if (!email) {
+        res.send([]);
+      }
+      const decodedEmail = req.decoded.email;
+      if (email !== decodedEmail) {
+        return res.status(403).send({ error: true, message: 'forbidden access' })
+      }
+      const query = { email: email }; 
 
-//       const result = await myAddClassCollection.find(query,filter).toArray();
-//       res.send(result);
-//     });
+      const result = await myAddClassCollection.find(query,filter).toArray();
+      res.send(result);
+    });
+
 app.post('/myaddedclasses', async(req, res)=> {
   const myclassAdded = req.body;
 
@@ -215,11 +213,6 @@ app.patch('/myaddedclasses/:id', async (req, res) => {
 
 
 
-//  app.post('/myaddedclasses', async (req, res) => {
-//       const item = req.body;
-//       const result = await myAddClassCollection.insertOne(item);
-//       res.send(result.ops[0]);
-//     })
 
     
 
